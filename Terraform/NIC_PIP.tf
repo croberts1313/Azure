@@ -1,28 +1,28 @@
 resource "azurerm_public_ip" "AppGw_pip" {
     name                            = "AppGw-pip"
     location                        = "${var.location}"
-    resource_group_name             = "${azurerm_resource_group.rg.name}"
+    resource_group_name             = "${azurerm_resource_group.vmrg.name}"
     public_ip_address_allocation    = "dynamic"
 }
 
 resource "azurerm_public_ip" "FW_mgmt_pip" {
     name                            = "FW-mgmt-pip"
     location                        = "${var.location}"
-    resource_group_name             = "${azurerm_resource_group.rg.name}"
+    resource_group_name             = "${azurerm_resource_group.vmrg.name}"
     public_ip_address_allocation    = "static"
 }
 
 resource "azurerm_public_ip" "FW_untrust_pip" {
     name                            = "FW-untrust-pip"
     location                        = "${var.location}"
-    resource_group_name             = "${azurerm_resource_group.rg.name}"
+    resource_group_name             = "${azurerm_resource_group.vmrg.name}"
     public_ip_address_allocation    = "static"
 }
 
 resource "azurerm_network_interface" "MGMT" {
     name                        = "${var.firewall_name}-eth0"
     location                    = "${var.location}"
-    resource_group_name         = "${azurerm_resource_group.rg.name}"
+    resource_group_name         = "${azurerm_resource_group.vmrg.name}"
     network_security_group_id   = "${azurerm_network_security_group.nsg_MGMT.id}"
 
     ip_configuration {
@@ -37,7 +37,7 @@ resource "azurerm_network_interface" "MGMT" {
 resource "azurerm_network_interface" "UNTRUST" {
     name                        = "${var.firewall_name}-eth1"
     location                    = "${var.location}"
-    resource_group_name         = "${azurerm_resource_group.rg.name}"
+    resource_group_name         = "${azurerm_resource_group.vmrg.name}"
     network_security_group_id   = "${azurerm_network_security_group.nsg_UNTRUST.id}"
 
     ip_configuration {
@@ -52,7 +52,7 @@ resource "azurerm_network_interface" "UNTRUST" {
 resource "azurerm_network_interface" "TRUST" {
     name                        = "${var.firewall_name}-eth2"
     location                    = "${var.location}"
-    resource_group_name         = "${azurerm_resource_group.rg.name}"
+    resource_group_name         = "${azurerm_resource_group.vmrg.name}"
     network_security_group_id   = "${azurerm_network_security_group.nsg_TRUST.id}"
 
     ip_configuration {
@@ -66,7 +66,7 @@ resource "azurerm_network_interface" "TRUST" {
 resource "azurerm_network_interface" "DMZ" {
     name                        = "${var.firewall_name}-eth3"
     location                    = "${var.location}"
-    resource_group_name         = "${azurerm_resource_group.rg.name}"
+    resource_group_name         = "${azurerm_resource_group.vmrg.name}"
     network_security_group_id   = "${azurerm_network_security_group.nsg_DMZ.id}"
 
     ip_configuration {

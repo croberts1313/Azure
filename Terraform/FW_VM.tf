@@ -1,7 +1,12 @@
+resource "azurerm_resource_group" "vmrg" {
+    name = "${var.vm_resource_group_name}"
+    location = "${var.location}"
+}
+
 resource "azurerm_availability_set" "FWAVS" {
     name                = "avs-hs-fw"
     location            = "${var.location}"
-    resource_group_name = "${azurerm_resource_group.rg.name}"
+    resource_group_name = "${azurerm_resource_group.vmrg.name}"
     managed             = "true"
     platform_update_domain_count    = "5"
     platform_fault_domain_count     = "2"
@@ -10,7 +15,7 @@ resource "azurerm_availability_set" "FWAVS" {
 resource "azurerm_virtual_machine" "FW" {
     name                            = "${var.firewall_name}"
     location                        = "${var.location}"
-    resource_group_name             = "${azurerm_resource_group.rg.name}"
+    resource_group_name             = "${azurerm_resource_group.vmrg.name}"
     network_interface_ids           = ["${azurerm_network_interface.MGMT.id}", "${azurerm_network_interface.UNTRUST.id}", "${azurerm_network_interface.TRUST.id}", "${azurerm_network_interface.DMZ.id}"]
     primary_network_interface_id    = "${azurerm_network_interface.MGMT.id}"
     availability_set_id             = "${azurerm_availability_set.FWAVS.id}"

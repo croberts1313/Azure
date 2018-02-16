@@ -27,8 +27,12 @@ variable "location" {
   description = "The default Azure region for the resource provisioning"
 }
 
-variable "resource_group_name" {
-  description = "The name of the resource group"
+variable "shared_resource_group_name" {
+  description = "The name of the shared resource group"
+}
+
+variable "vm_resource_group_name" {
+  description = "The name of the vm resource group"
 }
 
 variable "address_space" {
@@ -72,6 +76,51 @@ variable "nsg_name_prefix" {
 variable "firewall_name" {
   description = "The name of the firewall"
   default     = "PCCA-HSFW00"
+}
+
+variable "kpfile01_name" {
+  description = "The name of the new KPFILE01 VM"
+  default     = "PCCA-KPFILE01"
+}
+
+variable "kpapp01_name" {
+  description = "The name of the new KPAPP01 VM"
+  default     = "PCCA-KPAPP01"
+}
+
+variable "kpidb01_name" {
+  description = "The name of the new KPIDB01 VM"
+  default     = "PCCA-KPIDB01"
+}
+
+variable "kpidmcor01_name" {
+  description = "The name of the new KPIDMCOR01 VM"
+  default     = "PCCA-KPIDMCOR01"
+}
+
+variable "kpmdb01_name" {
+  description = "The name of the new KPMDB01 VM"
+  default     = "PCCA-KPMDB01"
+}
+
+variable "kprds01_name" {
+  description = "The name of the new KPRDS01 VM"
+  default     = "PCCA-KPRDS01"
+}
+
+variable "kprpt01_name" {
+  description = "The name of the new KPRPT01 VM"
+  default     = "PCCA-KPRPT01"
+}
+
+variable "kpweb01_name" {
+  description = "The name of the new KPWEB01 VM"
+  default     = "PCCA-KPWEB01"
+}
+
+variable "kpweb02_name" {
+  description = "The name of the new KPWEB02 VM"
+  default     = "PCCA-KPWEB02"
 }
 
 variable "fw_username" {
