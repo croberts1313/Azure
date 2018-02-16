@@ -1,3 +1,4 @@
+#AppGw
 resource "azurerm_application_gateway" "App_Gw" {
     name                            = "${var.AppGw_name}"
     location                        = "${var.location}"
